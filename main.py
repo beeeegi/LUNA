@@ -5,7 +5,7 @@ def recognize_speech():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
         print("gismen...")
-        audio = recognizer.listen(source, timeout=5)
+        audio = recognizer.listen(source, timeout=60)
 
     try:
         text = recognizer.recognize_google(audio, language="ka-GE")
