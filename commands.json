@@ -1,27 +1,85 @@
 {
     "commands": [
         {
-            "trigger": "შეწყვეტა",
-            "action": "stop"
-        },
-
-
-        {
             "trigger": "ოპერა",
             "application": "OperaGX"
         },
+
         {
             "trigger": "ლოლი",
             "application": "LeagueOfLegends"
         },
+
+        {
+            "trigger": "სტუდიო",
+            "application": "Roblox Studio"
+        },
+
+        {
+            "trigger": "მესენჯერი",
+            "application": "Messenger"
+        },
+
+        {
+            "trigger": "კონსული",
+            "application": "cmd"
+        },
+        {
+            "trigger": "კონსოლი",
+            "application": "cmd"
+        },
+
         {
             "trigger": "გუგლი",
             "application": "Chrome"
         },
+
         {
-            "trigger": "სტუდიო",
-            "application": "RobloxStudio"
-        }
+            "trigger": "ეჯდი",
+            "application": "Microsoft Edge"
+        },
+        {
+            "trigger": "ეჯი",
+            "application": "Microsoft Edge"
+        },
+
+        {
+            "trigger": "დისქორდი",
+            "application": "Discord"
+        },
+
+        {
+            "trigger": "spotify",
+            "application": "Spotify"
+        },
+        {
+            "trigger": "მუსიკა",
+            "application": "Spotify"
+        },
+
+        {
+            "trigger": "სტიმი",
+            "application": "Steam"
+        },
+
+        {
+            "trigger": "ტელეგრამი",
+            "application": "Telegram"
+        },
+
+        {
+            "trigger": "ზუკა",
+            "application": "Game Maker"
+        },
+
+        {
+            "trigger": "fortnite",
+            "application": "Fortnite"
+        },
+        {
+            "trigger": "ფორტნაიტი",
+            "application": "Fortnite"
+        }        
     ]
   }
   
