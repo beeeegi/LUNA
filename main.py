@@ -59,7 +59,7 @@ commands = load_commands()
 is_luna_active = False      # gatishvaze cmd ar gaitishos, aramed smena shewyvitos  
 luna_trigger = "ლუნა"
 
-commands_to_discord("❤️ გული მიცემს ❤️")
+commands_to_discord("✅ გული მიცემს ✅")
 while True:
     spoken_text = recognize_speech()
     
@@ -131,11 +131,11 @@ while True:
 
             elif "გაჩერდი" in spoken_text.lower():
                 logger.critical("shevwyvite mushaoba")
-                commands_to_discord("💔 გული აღარ მიცემს 💔")
+                commands_to_discord("❌ გული აღარ მიცემს ❌")
                 exit()
             elif "ჩაქრი" in spoken_text.lower():
                 logger.critical("shevwyvite mushaoba")
-                commands_to_discord("💔 გული აღარ მიცემს 💔")
+                commands_to_discord("❌ გული აღარ მიცემს ❌")
                 exit()
 
 
