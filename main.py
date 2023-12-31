@@ -15,7 +15,7 @@ def recognize_speech():
 
     with sr.Microphone() as source:
         logger.info("gismen...")
-        audio = recognizer.listen(source, timeout=60)
+        audio = recognizer.listen(source, timeout=30)
     try:
         text = recognizer.recognize_google(audio, language="ka-GE")
         return text
@@ -33,8 +33,8 @@ def load_commands():
 
 def write(text):
     file_path = "test/natqvami.txt"
-    with open(file_path, "w", encoding="utf-8") as file:
-        file.write(text)
+    with open(file_path, "a", encoding="utf-8") as file:
+        file.write(text + "\n")
 
 def commands_to_discord(text):
     webhook = os.getenv("DISCORD_WEBHOOK_URL")
