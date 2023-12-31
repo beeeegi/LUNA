@@ -1,0 +1,27 @@
+{
+    "commands": [
+        {
+            "trigger": "შეწყვეტა",
+            "action": "stop"
+        },
+
+
+        {
+            "trigger": "ოპერა",
+            "application": "OperaGX"
+        },
+        {
+            "trigger": "ლოლი",
+            "application": "LeagueOfLegends"
+        },
+        {
+            "trigger": "გუგლი",
+            "application": "Chrome"
+        },
+        {
+            "trigger": "სტუდიო",
+            "application": "RobloxStudio"
+        }
+    ]
+  }
+  
