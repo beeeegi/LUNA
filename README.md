@@ -16,6 +16,7 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 
 - runes in league (start match and that type of stuff)
 - maybe add some discord bot thing like muting someone if in voice
+- rewrite in c++ for more speed
 
 ## NOTES
 სანამ არ გავჩუმდები ბრძანებას ვერ ასრულებს, ეს გასასწორებელია მარა წარმოდგენა არ მაქვს როგორ\
