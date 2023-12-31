@@ -33,7 +33,7 @@ def write(text):
 commands = load_commands()
 
 is_jarvis_active = False
-jarvis_trigger = "ყლეო"
+jarvis_trigger = "ლუნა"
 
 
 while True:
