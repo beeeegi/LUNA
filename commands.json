@@ -90,7 +90,16 @@
         {
             "trigger": "ფორტნაიტი",
             "application": "Fortnite"
-        }        
+        },
+
+        {
+            "trigger": "roblox",
+            "application": "Roblox"
+        },
+        {
+            "trigger": "რობლოქსი",
+            "application": "Roblox"
+        }           
     ]
   }
   
