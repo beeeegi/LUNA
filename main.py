@@ -152,6 +152,7 @@ while True:
                 time.sleep(1)
                 logger.critical("VTISHAV KOMPIUTERS")
                 commands_to_discord("❌ მომხმარებელმა გათიშა კომპიუტერი ❌")
+                
                 time.sleep(1)
                 os.system("shutdown /s")
             else:
