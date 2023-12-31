@@ -1,7 +1,7 @@
 import speech_recognition as sr
 from AppOpener import open as open_app
 from AppOpener import close as close_app
-import json
+import json, os
 
 def recognize_speech():
     recognizer = sr.Recognizer()
@@ -91,9 +91,15 @@ while True:
             elif "გაჩერდი" in spoken_text.lower():
                 print("lunam shewyvita mushaoba")
                 exit()
-            elif "ჩაიჯვი" in spoken_text.lower():
+            elif "ჩაქრი" in spoken_text.lower():
                 print("lunam shewyvita mushaoba")
                 exit()
+
+
+            elif "ჩააქრე კომპიუტერი" in spoken_text.lower():
+                print("gamovrte komputeri")
+                #shutdown /s
+                os.system("tree")
             else:
                 print("GAVIGE ISETI OPERATORI ROMELIC AR MISWAVLIA")
         else:
