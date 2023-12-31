@@ -40,7 +40,7 @@ def commands_to_discord(text):
     webhook = os.getenv("DISCORD_WEBHOOK_URL")
 
     prefix = """```ansi
-[2;30m[2;34m[[0m[2;30m[0m[2;34m[1;34mLUNA] [1;33mcommands[0m[1;34m [1;37m->[0m[1;34m[1;36m[0m[1;34m[0m[2;34m[0m """
+[2;30m[2;34m[[0m[2;30m[0m[2;34m[1;34mLUNA][0m[1;34m [1;37m->[0m[1;34m[1;36m[0m[1;34m[0m[2;34m[0m """
     suffix = """```"""
     msg = prefix + text + suffix
 
