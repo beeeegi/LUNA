@@ -26,7 +26,8 @@ def load_commands():
     return commands_data.get("commands", [])
 
 def write(text):
-    with open("natqvami.txt", "w", encoding="utf-8") as file:
+    file_path = "test/natqvami.txt"
+    with open(file_path, "w", encoding="utf-8") as file:
         file.write(text)
 
 
