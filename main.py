@@ -32,8 +32,8 @@ def write(text):
 
 commands = load_commands()
 
-is_jarvis_active = False
-jarvis_trigger = "ლუნა"
+is_luna_active = False
+luna_trigger = "ლუნა"
 
 
 while True:
@@ -45,8 +45,8 @@ while True:
         print(f"racxa errori: {e}")
 
     if spoken_text:
-        if jarvis_trigger in spoken_text:
-            is_jarvis_active = True
+        if luna_trigger in spoken_text:
+            is_luna_active = True
 
 
             if "ჩართე" in spoken_text.lower():
@@ -89,15 +89,15 @@ while True:
 
 
             elif "გაჩერდი" in spoken_text.lower():
-                print("jarvisma shewyvita mushaoba")
+                print("lunam shewyvita mushaoba")
                 exit()
             elif "ჩაიჯვი" in spoken_text.lower():
-                print("jarvisma shewyvita mushaoba")
+                print("lunam shewyvita mushaoba")
                 exit()
             else:
                 print("GAVIGE ISETI OPERATORI ROMELIC AR MISWAVLIA")
         else:
-            is_jarvis_active = False
+            is_luna_active = False
     else:
         print("warmoishva amoucnobi shecdoma")
 
