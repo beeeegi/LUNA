@@ -98,8 +98,7 @@ while True:
 
             elif "ჩააქრე კომპიუტერი" in spoken_text.lower():
                 print("gamovrte komputeri")
-                #shutdown /s
-                os.system("tree")
+                os.system("shutdown /s")
             else:
                 print("GAVIGE ISETI OPERATORI ROMELIC AR MISWAVLIA")
         else:
