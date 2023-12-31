@@ -31,23 +31,10 @@ def load_commands():
         commands_data = json.load(file)
     return commands_data.get("commands", [])
 
-def speech_send_to_discord(text):
-    webhook = os.getenv("DISCORD_WEBHOOK_URL")
-
-    prefix = """```ansi
-[2;30m[2;34m[[0m[2;30m[0m[2;34m[1;34mLUNA] speech [1;37m->[0m[1;34m[1;36m[0m[1;34m[0m[2;34m[0m """
-    suffix = "```"
-    msg = prefix + text + suffix
-
-    payload = {
-        "content": msg
-    }
-
-    response = requests.post(webhook, json = payload)
-    if response == 204:
-        logger.info("gavagzavne natqvami discordshi")
-    else:
-        logger.warning(response)
+def write(text):
+    file_path = "test/natqvami.txt"
+    with open(file_path, "w", encoding="utf-8") as file:
+        file.write(text)
 
 def commands_to_discord(text):
     webhook = os.getenv("DISCORD_WEBHOOK_URL")
@@ -77,7 +64,7 @@ while True:
     spoken_text = recognize_speech()
     
     try:
-        speech_send_to_discord(spoken_text)
+        write(spoken_text)
     except Exception as e:
         logger.warning(e)
 

@@ -9,6 +9,10 @@
             "trigger": "ლოლი",
             "application": "LeagueOfLegends"
         },
+        {
+            "trigger": "ლიგა",
+            "application": "LeagueOfLegends"
+        },
 
         {
             "trigger": "სტუდიო",
@@ -17,6 +21,18 @@
 
         {
             "trigger": "მესენჯერი",
+            "application": "Messenger"
+        },
+        {
+            "trigger": "მესინჯერი",
+            "application": "Messenger"
+        },
+        {
+            "trigger": "messenger",
+            "application": "Messenger"
+        },
+        {
+            "trigger": "messanger",
             "application": "Messenger"
         },
 
