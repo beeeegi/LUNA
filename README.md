@@ -6,10 +6,12 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 
 ## TODO
 - add more commands
+- open websites
+- adding custom commands
+
 - run in background (system tray)
 - turn in exe file so others can use that aswell
 - icon and some app design
-- open websites
 
 ## NOTES
 სანამ არ გავჩუმდები ბრძანებას ვერ ასრულებს, ეს გასასწორებელია მარა წარმოდგენა არ მაქვს როგორ
