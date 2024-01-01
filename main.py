@@ -24,7 +24,7 @@ def recognize_speech():
 
     with sr.Microphone() as source:
         logger.info("gismen...")
-        audio = recognizer.listen(source, timeout=30)
+        audio = recognizer.listen(source)
     try:
         text = recognizer.recognize_google(audio, language="ka-GE")
         return text
