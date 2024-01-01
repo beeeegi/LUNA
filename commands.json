@@ -51,7 +51,7 @@
         },
 
         {
-            "trigger": "ეჯდი",
+            "trigger": "ედჯი",
             "application": "Microsoft Edge"
         },
         {
@@ -63,11 +63,11 @@
             "trigger": "დისქორდი",
             "application": "Discord"
         },
-
         {
-            "trigger": "spotify",
-            "application": "Spotify"
+            "trigger": "discord",
+            "application": "Discord"
         },
+
         {
             "trigger": "მუსიკა",
             "application": "Spotify"
@@ -90,6 +90,11 @@
         {
             "trigger": "ფორტნაიტი",
             "application": "Fortnite"
+        },
+
+        {
+            "trigger": "ვიზუალი",
+            "application": "Visual Studio Code"
         },
 
         {

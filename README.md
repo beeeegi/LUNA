@@ -8,11 +8,12 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 - add more commands
 - open websites
 - adding custom commands
-- add spotify controls (volume up and down, next song)
+- talk back
 
 - run in background (system tray)
 - turn in exe file so others can use that aswell
 - icon and some app design
+- currently playing (if talk back is possible)
 
 - runes in league (start match and that type of stuff)
 - maybe add some discord bot thing like muting someone if in voice
