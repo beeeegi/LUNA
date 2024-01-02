@@ -7,7 +7,6 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 ## TODO
 - add more commands
 - open websites
-- adding custom commands
 - talk back
 
 - run in background (system tray)
@@ -17,6 +16,7 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 
 - runes in league (start match and that type of stuff)
 - maybe add some discord bot thing like muting someone if in voice
+- adding custom commands
 - rewrite in c++ for more speed
 
 ## NOTES
