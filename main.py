@@ -3,7 +3,7 @@ import spotipy.util as s_util
 from AppOpener import open as open_app
 from AppOpener import close as close_app
 from dotenv import load_dotenv
-from spotipy.oauth2 import SpotifyOAuth
+import spotipy.oauth2 as oauth2
 import coloredlogs, logging, json, os, time, requests, spotipy
 
 coloredlogs.install(level='INFO', fmt='%(levelname)s %(name)s %(message)s')
@@ -15,8 +15,34 @@ SPOTIPY_CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID")
 SPOTIPY_CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
 SPOTIPY_REDIRECT_URI = os.getenv("SPOTIPY_REDIRECT_URI")
 SPOTIPY_USERNAME = os.getenv("SPOTIPY_USERNAME")
-token = s_util.prompt_for_user_token(SPOTIPY_USERNAME, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri=SPOTIPY_REDIRECT_URI, scope='user-modify-playback-state')
+token = s_util.prompt_for_user_token(
+    SPOTIPY_USERNAME,
+    client_id=SPOTIPY_CLIENT_ID,
+    client_secret=SPOTIPY_CLIENT_SECRET,
+    redirect_uri=SPOTIPY_REDIRECT_URI,
+    scope='user-modify-playback-state'
+)
+sp_oauth = oauth2.SpotifyOAuth(
+    SPOTIPY_CLIENT_ID,
+    SPOTIPY_CLIENT_SECRET,
+    SPOTIPY_REDIRECT_URI,
+    scope='user-modify-playback-state',
+    cache_path=".cache",
+)
 spotify_client = spotipy.Spotify(auth=token)
+
+def refresh_token_if_expired():
+    token_info = sp_oauth.get_access_token()
+
+    if token_info and sp_oauth.is_token_expired(token_info):
+        new_token_info = sp_oauth.refresh_access_token(token_info['refresh_token'])
+        new_token = new_token_info['access_token']
+        return new_token
+    elif token_info:
+        return token_info['access_token']
+    else:
+        return None
+
 
 
 def recognize_speech():
@@ -141,14 +167,17 @@ while True:
     
     
                 elif "გადართე მუსიკა" in spoken_text.lower():
-                    try:
-                        spotify_client.next_track(device_id=None)
-                        commands_to_discord("⏭️ გადავრთე მუსიკა")
-                        logger.info("musika gadavrte")
-                    except Exception as e:
-                        logger.warning(e)
+                    token = refresh_token_if_expired()
+                    spotify_client = spotipy.Spotify(auth=token)
+
+                    spotify_client.next_track(device_id=None)
+                    commands_to_discord("⏭️ გადავრთე მუსიკა")
+                    logger.info("musika gadavrte")
                 elif "გააგრძელე მუსიკა" in spoken_text.lower():
                     try:
+                        token = refresh_token_if_expired()
+                        spotify_client = spotipy.Spotify(auth=token)
+                        
                         spotify_client.start_playback(device_id=None)
                         commands_to_discord("▶️ გავაგრძელე მუსიკა")
                         logger.info("musika gavagrdzele")
@@ -156,6 +185,9 @@ while True:
                         logger.warning(e)
                 elif "დააპაუზე მუსიკა" in spoken_text.lower():
                     try:
+                        token = refresh_token_if_expired()
+                        spotify_client = spotipy.Spotify(auth=token)
+                        
                         spotify_client.pause_playback(device_id=None)
                         commands_to_discord("⏸️ დავაპაუზე მუსიკა")
                         logger.info("musika davapauze")
