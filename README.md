@@ -7,7 +7,6 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 ## TODO
 - add more commands
 - open websites
-- add discord controls (mute, deafen, screen sharing control, leaving vc, joinin vc)
 - talk back
 
 - run in background (system tray)
