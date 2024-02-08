@@ -10,6 +10,7 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 - talk back
 - "ლუნა დაგუგლე xxx" -> დაგუგლავს ნებისმიერ რამეს რასაც ამ ფრაზის მერე იტყვი და ჩამოგიწერს სადმე რამეს იდკ ჯერ
 - change if, elif to switch statements
+- comments
 
 - run in background (system tray)
 - turn in .exe
