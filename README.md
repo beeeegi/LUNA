@@ -19,4 +19,4 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 
 - runes in league (start match and that type of stuff)
 - adding custom commands
-- rewrite in c++
+- rewrite in .js
