@@ -8,17 +8,15 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 - add more commands
 - open websites
 - talk back
+- "ლუნა დაგუგლე xxx" -> დაგუგლავს ნებისმიერ რამეს რასაც ამ ფრაზის მერე იტყვი და ჩამოგიწერს სადმე რამეს იდკ ჯერ
+- change if, elif to switch statements
+- comments
 
 - run in background (system tray)
-- turn in exe file so others can use that aswell
-- icon and some app design
+- turn in .exe
+- icon and some app design(???????????????????)
 - currently playing (if talk back is possible)
 
 - runes in league (start match and that type of stuff)
-- maybe add some discord bot thing like muting someone if in voice
 - adding custom commands
-- rewrite in c++ for more speed
-
-## NOTES
-სანამ არ გავჩუმდები ბრძანებას ვერ ასრულებს, ეს გასასწორებელია მარა წარმოდგენა არ მაქვს როგორ\
-სხვა recognitionების ცდაც თუ მთლად მთელი სკრიპტის შეცვლა არ მომიწია
+- rewrite in .js
