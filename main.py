@@ -6,11 +6,14 @@ from dotenv import load_dotenv
 import spotipy.oauth2 as oauth2
 import coloredlogs, logging, json, os, time, requests, spotipy
 
+# logging and dotenv setup
 coloredlogs.install(level='INFO', fmt='%(levelname)s %(name)s %(message)s')
 logger = logging.getLogger('LUNA')
 logger.setLevel(logging.INFO)
 load_dotenv()
 
+
+# spotify setup
 SPOTIPY_CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID")
 SPOTIPY_CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
 SPOTIPY_REDIRECT_URI = os.getenv("SPOTIPY_REDIRECT_URI")
@@ -31,7 +34,8 @@ sp_oauth = oauth2.SpotifyOAuth(
 )
 spotify_client = spotipy.Spotify(auth=token)
 
-def refresh_token_if_expired():
+# refresh spotify token if expired
+def refreshTokenIfExpired():
     token_info = sp_oauth.get_access_token()
 
     if token_info and sp_oauth.is_token_expired(token_info):
@@ -43,9 +47,8 @@ def refresh_token_if_expired():
     else:
         return None
 
-
-
-def recognize_speech():
+# function to recognize speech input
+def recognizeSpeech():
     recognizer = sr.Recognizer()
 
     with sr.Microphone() as source:
@@ -60,17 +63,20 @@ def recognize_speech():
         logger.warning(e)
         return None
 
-def load_commands():
+# load commands from JSON file
+def loadCommands():
     with open("commands.json", "r", encoding="utf-8") as file:
         commands_data = json.load(file)
     return commands_data.get("commands", [])
 
-def write(text):
+# write speech input to file
+def writeToFile(text):
     file_path = "test/natqvami.txt"
     with open(file_path, "a", encoding="utf-8") as file:
         file.write(text + "\n")
 
-def commands_to_discord(text):
+# send executed commands to discord
+def commandsToDiscord(text):
     webhook = os.getenv("DISCORD_WEBHOOK_URL")
 
     prefix = """```ansi
@@ -86,15 +92,18 @@ def commands_to_discord(text):
     if response == 204:
         logger.info("gavagzavne natqvami discordshi")
 
-commands = load_commands()
+# load commands and initialize variables
+commands = loadCommands()
 luna = "ლუნა"
-commands_to_discord("✅ გული მიცემს ✅")
+commandsToDiscord("✅ გული მიცემს ✅")
 
-while True:
-    spoken_text = recognize_speech()
+# main loop for listening to commands
+while True: 
+    spoken_text = recognizeSpeech()
     
+    # write speech input to file
     try:
-        write(spoken_text)
+        writeToFile(spoken_text)
     except TypeError as e:
         if "unsupported operand" in str(e):
             pass
@@ -103,131 +112,127 @@ while True:
     except Exception as e:
         logger.warning(e)
 
+    # checks if spoken_text exists
     if spoken_text:
+        # checks if "ლუნა" exists in variable `spoken_text`
         if luna in spoken_text:
-            is_luna_active = True
-            if is_luna_active:
-                if "ჩართე" in spoken_text.lower():
-                    for command in commands:
-                        if command["trigger"] in spoken_text:
-                            try:
-                                app = command["application"]
-                                open_app(command["application"], match_closest=True, output=False)
+            # checks if "ჩართე"(open) is in spoken_text variable
+            if "ჩართე" in spoken_text.lower():
+                # loops trough all of the commands and checks if the trigger word is found in `spoken_text`
+                for command in commands:
+                    if command["trigger"] in spoken_text:
+                        try:
+                            app = command["application"]
+                            open_app(command["application"], match_closest=True, output=False)
+                            
+                            logger.info(f"vxsni aplikacias - {app}")
+                            commandsToDiscord(f"ვხსნი აპლიკაციას - {app}")
+                        except Exception as e:
+                            logger.warning(e)
+            # checks if "გახსენი"(open) is in spoken_text variable
+            elif "გახსენი" in spoken_text.lower():
+                # loops trough all of the commands and checks if the trigger word is found in `spoken_text`
+                for command in commands:
+                    if command["trigger"] in spoken_text:
+                        try:
+                            app = command["application"]
+                            open_app(command["application"], match_closest=True, output=False)
 
-                                logger.info(f"vxsni aplikacias - {app}")
-                                commands_to_discord(f"ვხსნი აპლიკაციას - {app}")
-                            except Exception as e:
-                                logger.warning(e)
-                elif "გახსენი" in spoken_text.lower():
-                    for command in commands:
-                        if command["trigger"] in spoken_text:
-                            try:
-                                app = command["application"]
-                                open_app(command["application"], match_closest=True, output=False)
-    
-                                logger.info(f"vxsni aplikacias - {app}")
-                                commands_to_discord(f"ვხსნი აპლიკაციას - {app}")
-                            except Exception as e:
-                                logger.warning(e)
-    
-    
-                elif "გამორთე" in spoken_text.lower():
-                    for command in commands:
-                        if command["trigger"] in spoken_text:
-                            try:
-                                app = command["application"]
-                                close_app(command["application"], match_closest=True, output=False)
-    
-                                logger.info(f"vtishav aplikacias - {app}")
-                                commands_to_discord(f"ვხურავ აპლიკაციას - {app}")
-                            except Exception as e:
-                                logger.warning(e)
-                elif "გათიშე" in spoken_text.lower():
-                    for command in commands:
-                        if command["trigger"] in spoken_text:
-                            try:
-                                app = command["application"]
-                                close_app(command["application"], match_closest=True, output=False)
-    
-                                logger.info(f"vtishav aplikacias - {app}")
-                                commands_to_discord(f"ვხურავ აპლიკაციას - {app}")
-                            except Exception as e:
-                                logger.warning(e)
-                elif "დახურე" in spoken_text.lower():
-                    for command in commands:
-                        if command["trigger"] in spoken_text:
-                            try:
-                                app = command["application"]
-                                close_app(command["application"], match_closest=True, output=False)
-    
-                                logger.info(f"vtishav aplikacias - {app}")
-                                commands_to_discord(f"ვხურავ აპლიკაციას - {app}")
-                            except Exception as e:
-                                logger.warning(e)
-    
-    
-                elif "გადართე მუსიკა" in spoken_text.lower():
-                    token = refresh_token_if_expired()
+                            logger.info(f"vxsni aplikacias - {app}")
+                            commandsToDiscord(f"ვხსნი აპლიკაციას - {app}")
+                        except Exception as e:
+                            logger.warning(e)
+
+            # checks if "გამორთე"(close) is in spoken_text variable
+            elif "გამორთე" in spoken_text.lower():
+                # loops trough all of the commands and checks if the trigger word is found in `spoken_text`
+                for command in commands:
+                    if command["trigger"] in spoken_text:
+                        try:
+                            app = command["application"]
+                            close_app(command["application"], match_closest=True, output=False)
+                            logger.info(f"vtishav aplikacias - {app}")
+                            commandsToDiscord(f"ვხურავ აპლიკაციას - {app}")
+                        except Exception as e:
+                            logger.warning(e)
+            # checks if "გათიშე"(close) is in spoken_text variable
+            elif "გათიშე" in spoken_text.lower():
+                # loops trough all of the commands and checks if the trigger word is found in `spoken_text`
+                for command in commands:
+                    if command["trigger"] in spoken_text:
+                        try:
+                            app = command["application"]
+                            close_app(command["application"], match_closest=True, output=False)
+                            logger.info(f"vtishav aplikacias - {app}")
+                            commandsToDiscord(f"ვხურავ აპლიკაციას - {app}")
+                        except Exception as e:
+                            logger.warning(e)
+            # checks if "დახურე"(close) is in spoken_text variable
+            elif "დახურე" in spoken_text.lower():
+                # loops trough all of the commands and checks if the trigger word is found in `spoken_text`
+                for command in commands:
+                    if command["trigger"] in spoken_text:
+                        try:
+                            app = command["application"]
+                            close_app(command["application"], match_closest=True, output=False)
+                            logger.info(f"vtishav aplikacias - {app}")
+                            commandsToDiscord(f"ვხურავ აპლიკაციას - {app}")
+                        except Exception as e:
+                            logger.warning(e)
+
+            # checks if "გადართე მუსიკა"(next track) is in spoken_text variable
+            elif "გადართე მუსიკა" in spoken_text.lower():
+                token = refreshTokenIfExpired()
+                spotify_client = spotipy.Spotify(auth=token)
+                spotify_client.next_track(device_id=None)
+                commandsToDiscord("⏭️ გადავრთე მუსიკა")
+                logger.info("musika gadavrte")
+            # checks if "გააგრძელე მუსიკა"(continue playback) is in spoken_text variable
+            elif "გააგრძელე მუსიკა" in spoken_text.lower():
+                try:
+                    token = refreshTokenIfExpired()
                     spotify_client = spotipy.Spotify(auth=token)
+                    spotify_client.start_playback(device_id=None)
+                    commandsToDiscord("▶️ გავაგრძელე მუსიკა")
+                    logger.info("musika gavagrdzele")
+                except Exception as e:
+                    logger.warning(e)
+            # checks if "დააპაუზე მუსიკა"(pause playback) is in spoken_text variable
+            elif "დააპაუზე მუსიკა" in spoken_text.lower():
+                try:
+                    token = refreshTokenIfExpired()
+                    spotify_client = spotipy.Spotify(auth=token)
+                    spotify_client.pause_playback(device_id=None)
+                    commandsToDiscord("⏸️ დავაპაუზე მუსიკა")
+                    logger.info("musika davapauze")
+                except Exception as e:
+                    logger.warning(e)
 
-                    spotify_client.next_track(device_id=None)
-                    commands_to_discord("⏭️ გადავრთე მუსიკა")
-                    logger.info("musika gadavrte")
-                elif "გააგრძელე მუსიკა" in spoken_text.lower():
-                    try:
-                        token = refresh_token_if_expired()
-                        spotify_client = spotipy.Spotify(auth=token)
-                        
-                        spotify_client.start_playback(device_id=None)
-                        commands_to_discord("▶️ გავაგრძელე მუსიკა")
-                        logger.info("musika gavagrdzele")
-                    except Exception as e:
-                        logger.warning(e)
-                elif "დააპაუზე მუსიკა" in spoken_text.lower():
-                    try:
-                        token = refresh_token_if_expired()
-                        spotify_client = spotipy.Spotify(auth=token)
-                        
-                        spotify_client.pause_playback(device_id=None)
-                        commands_to_discord("⏸️ დავაპაუზე მუსიკა")
-                        logger.info("musika davapauze")
-                    except Exception as e:
-                        logger.warning(e)
-                    
-    
-    
-                elif "გაჩერდი" in spoken_text.lower():
-                    logger.critical("shevwyvite mushaoba")
-                    commands_to_discord("❌ გული აღარ მიცემს ❌")
-                    exit()
-                elif "ჩაქრი" in spoken_text.lower():
-                    logger.critical("shevwyvite mushaoba")
-                    commands_to_discord("❌ გული აღარ მიცემს ❌")
-                    exit()
-    
-    
-                elif "ჩააქრე კომპიუტერი" in spoken_text.lower():
-                    logger.critical("KOMPIUTERI GAITISHEBA 5 WAMSHI")
+            # checks if "გაჩერდი"(stop) is in spoken_text variable
+            elif "გაჩერდი" in spoken_text.lower():
+                logger.critical("shevwyvite mushaoba")
+                commandsToDiscord("❌ გული აღარ მიცემს ❌")
+                exit()
+            # checks if "ჩაქრი"(stop) is in spoken_text variable
+            elif "ჩაქრი" in spoken_text.lower():
+                logger.critical("shevwyvite mushaoba")
+                commandsToDiscord("❌ გული აღარ მიცემს ❌")
+                exit()
+            
+            # checks if "ჩააქრე კომპიუტერი"(shutdown the computer) is in spoken_text variable
+            elif "ჩააქრე კომპიუტერი" in spoken_text.lower():
+                z = 5
+                for i in range(z):
+                    logger.critical(f"KOMPIUTERI GAITISHEBA {z} WAMSHI")
+                    z -= 1
                     time.sleep(1)
-                    logger.critical("KOMPIUTERI GAITISHEBA 4 WAMSHI")
-                    time.sleep(1)
-                    logger.critical("KOMPIUTERI GAITISHEBA 3 WAMSHI")
-                    time.sleep(1)
-                    logger.critical("KOMPIUTERI GAITISHEBA 2 WAMSHI")
-                    time.sleep(1)
-                    logger.critical("KOMPIUTERI GAITISHEBA 1 WAMSHI")
-                    time.sleep(1)
-                    logger.critical("VTISHAV KOMPIUTERS")
-                    commands_to_discord("❌ მომხმარებელმა გათიშა კომპიუტერი ❌")
-                    
-                    time.sleep(1)
-                    os.system("shutdown /s")
-                else:
-                    logger.warning("brdzaneba ver davafiqsire")
 
-                is_luna_active = False
+                logger.critical("VTISHAV KOMPIUTERS")
+                commandsToDiscord("❌ მომხმარებელმა გათიშა კომპიუტერი ❌")
+                time.sleep(1)
+                os.system("shutdown /s")
             else:
-                logger.warning("ar var aqtiuri")
+                logger.warning("brdzaneba ver davafiqsire")
         else:
             logger.info("velodebi chems saxels")
     else:
