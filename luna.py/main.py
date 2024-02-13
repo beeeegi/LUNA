@@ -70,7 +70,7 @@ def loadCommands():
 
 # write speech input to file
 def writeToFile(text):
-    file_path = "test/natqvami.txt"
+    file_path = os.getenv("SPEECH_FILE_PATH")
     with open(file_path, "a", encoding="utf-8") as file:
         file.write(text + "\n")
 
