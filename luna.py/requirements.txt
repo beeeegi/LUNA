@@ -3,3 +3,4 @@ requests==2.26.0
 spotipy==2.19.0
 python-dotenv==0.19.2
 SpeechRecognition==3.8.1
+AppOpener==1.0.0
