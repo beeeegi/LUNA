@@ -1,1 +1,10 @@
-# this is the original LUNA code written in python
+# This is the original LUNA code written in python
+
+## Requirements
+```
+coloredlogs==15.0
+requests==2.26.0
+spotipy==2.19.0
+python-dotenv==0.19.2
+SpeechRecognition==3.8.1
+```
