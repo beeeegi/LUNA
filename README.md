@@ -5,7 +5,10 @@ J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinem
 
 
 ## TODO
-- rewrite in .js
+I HAVE TO REWRITE THE CODE :C
+AND IT WILL STAY ON PYTHON
+
+- import AI to it
 - open websites
 - talk back
 - "ლუნა დაგუგლე xxx" -> დაგუგლავს ნებისმიერ რამეს რასაც ამ ფრაზის მერე იტყვი და ჩამოგიწერს სადმე რამეს იდკ ჯერ
