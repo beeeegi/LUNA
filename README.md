@@ -1,4 +1,4 @@
-# Luna
+# Luna | PENDING RE-WRITE
 J.A.R.V.I.S ripoff but in Georgian Language.
 
 J.A.R.V.I.S. is a fictional character voiced by Paul Bettany in the Marvel Cinematic Universe film franchise, based on the Marvel Comics characters Edwin Jarvis and H.O.M.E.R., respectively the household butler of the Stark family and another AI designed by Stark.
@@ -38,27 +38,3 @@ def writeToFile(text):
         file.write(text + "\n")
 ```
 Don't forget to change `your_path` in `.env` file to your own path.
-
-
-
-
-
-
-
-
-## TODO
-I HAVE TO REWRITE THE CODE :C
-AND IT WILL STAY ON PYTHON
-
-- import AI to it
-- open websites
-- talk back
-- "ლუნა დაგუგლე xxx" -> დაგუგლავს ნებისმიერ რამეს რასაც ამ ფრაზის მერე იტყვი და ჩამოგიწერს სადმე რამეს იდკ ჯერ
------------------------------------
-- run in background (system tray)
-- turn in .exe
-- icon and some app design(???????????????????)
-- currently playing (if talk back is possible)
------------------------------------
-- runes in league (start match and that type of stuff)
-- adding custom commands
